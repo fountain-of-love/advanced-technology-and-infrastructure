@@ -206,7 +206,7 @@ Trust is earned, never assumed. Security and integrity mean protecting systems a
 
 ---
 
-## W VII: Collaboration & Interoperability
+## W VIII: Collaboration & Interoperability
 
 **Core Definition**  
 No system stands alone. Collaboration is the human dimension; interoperability is the technical counterpart. Together they ensure IT flourishes as an ecosystem of people and parts, not silos or monoliths. This wisdom insists that systems and teams thrive by working with, not against, each other.
@@ -346,7 +346,7 @@ Scaling is not just “more”; it is “better alignment with flow.” Scalabil
 
 ---
 
-## W XII: Sustainable Stewardship
+## W XIII: Sustainable Stewardship
 
 **Core Definition**  
 Every system exists within larger cycles. Sustainable stewardship means caring for IT resources — energy, hardware, human effort — in ways that regenerate rather than exhaust. It is the unifying wisdom that technology, people, and planet are one system.
