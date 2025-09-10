@@ -1,0 +1,155 @@
+# Categorization of Refactorings by the 13 Laws of IT
+
+This document provides a comprehensive overview of refactorings categorized according to the 13 Laws of IT.  
+The provenance of each refactoring is noted in brackets: **[MF] = Martin Fowler**, **[FoL] = FoL extensions**.  
+Fowler’s entries form the canonical core; FoL entries extend into runtime, security, and stewardship concerns.
+
+---
+
+## W I: Code Quality & Modularity
+
+- **Change Function Declaration** [MF]: Adjust function signatures (add/remove/rename parameters) to clarify contracts.  
+- **Encapsulate Collection/Record/Variable** [MF]: Hide data structures behind accessors to enforce clear boundaries.  
+- **Extract Class/Function/Variable** [MF]: Break down large, complex code into smaller, more focused units.  
+- **Inline Function/Variable** [MF]: Simplify code by removing unnecessary abstractions.  
+- **Move Field/Function** [MF]: Improve cohesion by placing code where it logically belongs.  
+- **Remove Dead Code** [MF]: Eliminate unused code to reduce clutter and improve maintainability.  
+- **Rename Field/Variable/Function** [MF]: Clarify intent with better naming.  
+- **Replace Magic Literal** [MF]: Replace raw values with named constants for readability.  
+- **Replace Temp with Query** [MF]: Reduce function state by replacing temporary variables with direct queries.  
+- **Separate Query from Modifier** [MF]: Split functions that return values from those that change state.  
+- **Encapsulate Inline Script** [FoL]: Extract inline snippets (in configs/templates) into proper functions or modules.
+
+---
+
+## W II: Iteration & Resiliency
+
+- **Introduce Assertion** [MF]: Detect invalid assumptions early with fail-fast checks.  
+- **Replace Exception with Test** [MF]: Make failures predictable by pre-checking conditions.  
+- **Extract Test Setup** [FoL]: Centralize repetitive setup logic to streamline iterative testing.  
+- **Simplify Conditional Logic** [FoL]: Reduce branching complexity, making code more testable.  
+- **Remove Side Effects from Query** [FoL]: Ensure queries do not mutate state, aiding predictability.  
+- **Isolate Flaky Test** [FoL]: Quarantine nondeterministic tests to preserve feedback cycles.
+
+---
+
+## W III: Fault Tolerance & Decoupling
+
+- **Hide Delegate** [MF]: Prevent client coupling to internal delegated structures.  
+- **Remove Middle Man** [MF]: Remove redundant indirection when delegation adds no value.  
+- **Replace Inheritance with Delegation** [MF]: Use delegation instead of rigid inheritance hierarchies.  
+- **Replace Subclass with Delegate** [MF]: Reduce subclassing complexity by delegating behavior.  
+- **Introduce Circuit Breaker Abstraction** [FoL]: Wrap unstable dependencies with resilience logic.
+
+---
+
+## W IV: Architectural Discernment
+
+- **Extract Superclass** [MF]: Promote reuse by lifting shared behavior into a superclass.  
+- **Replace Primitive with Object** [MF]: Model concepts with richer classes instead of raw types.  
+- **Replace Type Code with Subclasses** [MF]: Replace type-checking logic with polymorphism.  
+- **Elevate Concept to Module** [FoL]: Create a dedicated module when a cross-cutting concern emerges.
+
+---
+
+## W V: Right-Sizing & Balance
+
+- **Collapse Hierarchy** [MF]: Simplify unnecessary class hierarchies.  
+- **Consolidate Conditional Expression** [MF]: Merge duplicate checks into streamlined conditionals.  
+- **Introduce Gateway** [FoL]: Provide a simplified entry point to complex subsystems.  
+- **Replace Polymorphism with Conditional** [FoL]: Use a conditional when variability is minimal.  
+- **Remove Parameter Object** [FoL]: Drop object wrappers when they add unnecessary indirection.  
+- **Inline Over-Generalized Abstraction** [FoL]: Collapse abstractions created “just in case.”
+
+---
+
+## W VI: Observability & Truthfulness
+
+- **Introduce Assertion** [MF]: Make assumptions explicit and verifiable at runtime.  
+- **Replace Exception with Test** [MF]: Improve transparency of expected failures.  
+- **Introduce Logging** [FoL]: Add structured logging for transparency and auditability.  
+- **Add a State Query Method** [FoL]: Provide visibility into object state through queries.  
+- **Extract Error Handler** [FoL]: Separate error-handling code for clarity and observability.  
+- **Introduce Health Check Endpoint** [FoL]: Provide system-level visibility into runtime status.
+
+---
+
+## W VII: Security & Integrity
+
+- **Introduce Assertion** [MF]: Enforce invariants to maintain data integrity.  
+- **Introduce Validation Method** [FoL]: Encapsulate input checks to enforce boundary integrity.  
+- **Replace Global State with Local Variables** [FoL]: Reduce attack surface by limiting scope.  
+- **Encapsulate Credentials** [FoL]: Secure sensitive information behind safe abstractions.  
+- **Sanitize Input at Boundary** [FoL]: Prevent injection and corruption by cleaning external input.
+
+---
+
+## W VIII: Collaboration & Interoperability
+
+- **Introduce Parameter Object** [MF]: Simplify signatures by grouping parameters into cohesive objects.  
+- **Parameterize Function** [MF]: Increase reusability by replacing hardcoded values with parameters.  
+- **Combine Functions into Class/Transform** [FoL]: Group related functions into intentional APIs.  
+- **Unify Message Format** [FoL]: Standardize data exchange with consistent schemas.
+
+---
+
+## W IX: Intentional Design & Value
+
+- **Remove Flag Argument** [MF]: Make calls explicit by avoiding boolean flags.  
+- **Replace Conditional with Polymorphism** [MF]: Express domain variability directly with polymorphism.  
+- **Replace Loop with Pipeline** [MF]: Transform loops into declarative pipelines for clarity.  
+- **Consolidate Duplicate Conditional Fragments** [MF]: Eliminate redundant logic to clarify purpose.  
+- **Inline Business Rule** [FoL]: Move hidden domain logic into its rightful business context.
+
+---
+
+## W X: Simplicity
+
+- **Decompose Conditional** [MF]: Break complex conditionals into understandable parts.  
+- **Replace Nested Conditional with Guard Clauses** [MF]: Flatten branching with early exits.  
+- **Split Loop** [MF]: Separate loops to clarify responsibilities.  
+- **Split Variable** [MF]: Avoid reusing variables for multiple purposes.  
+- **Substitute Algorithm** [MF]: Replace over-complicated algorithms with simpler ones.  
+- **Collapse Boolean Complexity** [FoL]: Extract expressive helpers from compound logic.
+
+---
+
+## W XI: Operational Mindfulness
+
+- **Replace Error Code with Exception** [MF]: Use exceptions for robust error handling.  
+- **Replace Exception with Precheck** [MF]: Optimize by preventing predictable exceptions.  
+- **Extract Retry Policy** [FoL]: Centralize retry logic into dedicated components.
+
+---
+
+## W XII: Scalability & Efficiency
+
+- **Change Reference to Value / Change Value to Reference** [MF]: Optimize data passing and storage for performance.  
+- **Return Modified Value** [MF]: Avoid redundant lookups by returning updated results directly.  
+- **Batch Small Operations** [FoL]: Refactor repeated fine-grained operations into bulk processes.  
+- **Lazy Initialize Resource** [FoL]: Defer expensive setup until actually needed.
+
+---
+
+## W XIII: Sustainable Stewardship
+
+- **Remove Dead Code** [MF]: Reduce waste and cognitive load by eliminating unused code.  
+- **Extract Data Transfer Object (DTO)** [FoL]: Minimize data transfer by bundling only what’s needed.  
+- **Introduce Cache** [FoL]: Save results to avoid redundant computation.  
+- **Remove Temporal Coupling** [FoL]: Decouple processes from rigid timing assumptions.  
+- **Introduce Expiration Policy** [FoL]: Add cleanup rules for temporary data to avoid bloat.  
+- **Externalize Configuration** [FoL]: Move configs out of code for maintainability and reuse.
+
+---
+
+# Distribution Summary
+
+- **71 total refactorings**  
+  - Martin Fowler: 40 (56%)  
+  - FoL: 31 (44%)  
+- **Dense clusters**: W I, W II, W V, W VI, W XIII  
+- **Sparse clusters**: W IV, W VIII, W XI, W XII  
+- **FoL-heavy zones**: W VII (Security), W XIII (Stewardship)  
+
+**Pattern:** Fowler emphasizes *micro-level craftsmanship*; FoL extends into *macro-level resilience and stewardship*.  
+Together, they balance **short-term clarity** with **long-term sustainability**.
